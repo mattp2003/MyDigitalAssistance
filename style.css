@@ -1,0 +1,16 @@
+.time {
+    text-align: center;
+}
+
+.columns-container {
+    display: flex;
+}
+  
+.column {
+    height: 500px;
+    padding: 10px;
+    flex: 1;
+    background-color: #f6f1f1;
+    box-sizing: border-box;
+}
+
