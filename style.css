@@ -4,13 +4,23 @@
 
 .columns-container {
     display: flex;
+    gap: 20px;
+    justify-content: space-between;
 }
   
 .column {
     height: 500px;
     padding: 10px;
     flex: 1;
-    background-color: #f6f1f1;
+    background-color: #d9f2db;
     box-sizing: border-box;
+    padding-right: 50px;
+    
+}
+
+.column-title {
+    font-size: medium;
+    color: black;
+    
 }
 
