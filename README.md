@@ -15,17 +15,15 @@
 - [x] Any Templates you will build on as reference
 
 ### Task/Todo Feature:
-- The user will have the ability to create tasks by clicking an "Add" button. Each task consists of a title and description.
-- The task will be categorized into 3 columns: This Week, Next Week, Completed.
-- Tasks can be dragged to the different columns for organization and have the option to be edited or deleted.
+- The user will have the ability to create tasks by clicking an "Add" button.
 - Each task will have a delete button so the user can remove them.
 - Tasks will be stored locally in files so their content can be saved and the columns they are categorized under are saved as well.
 
 ### Notes Feature:
-- We want to allow the user to create notes with a title, date, and timestamp. 
-- There will be a search-bar functionality to allow for finding specific notes within the Notes section of the site (will implement with full-text search).
+- We want to allow the user to create notes with a date, and timestamp. 
+- There will be a scrolling functionality to allow for finding specific notes within the Notes section of the site.
 - The notes will be saved in a local file so the user can access them at any time. 
-- Notes can be easily deleted by pressing a "trash bin" icon on the note.
+- Notes can be easily deleted by pressing a "delete" button.
 
 ### Calender & Clock Feature:
 - There will be a live clock on the top of the screen which is consistent and updating to reflect the real time. 
