@@ -64,10 +64,17 @@ function add_task() {
 }
 
 function load_tasks() {
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
-    if (tasks === null) {
+    /*  Loads the tasks from the local storage and displays them
+        within the tasks column
+    */
+
+    // Retrive the tasks from the local storage on the borwser
+    let tasks = JSON.parse(localStorage.getItem('tasks'));  
+    if (tasks === null) {   // if no tasks found, empty list
         tasks = []; 
     }
+
+    // Add all the loaded tasks into the task column
     tasks.forEach(task_text => {
         const task_element = document.createElement('div');
         task_element.classList.add('task');
