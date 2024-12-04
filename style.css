@@ -33,3 +33,15 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+
+.edit-button {
+    background-color: #007bff;     /* Blue color for edit button */
+    color: white;                  /* White text */
+    margin-left: 50px;              /* Add spacing between buttons */
+}
+
+.delete-button {
+    background-color: #dc3545;     /* Red color for delete button */
+    color: white;                  /* White text */
+    margin-left: 5px;              /* Add spacing between buttons */
+}
