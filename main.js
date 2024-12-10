@@ -52,17 +52,22 @@ function add_task() {
     task_text_element.textContent = task_text;    // Add the task text here
     task_element.appendChild(task_text_element);
 
+    // Create a container for the buttons
+    const task_buttons = document.createElement('div');
+    task_buttons.classList.add('task-buttons');
+    task_element.appendChild(task_buttons);
+
     // Adds Edit button
     const edit_button = document.createElement('button');
     edit_button.textContent = 'Edit';
     edit_button.classList.add('edit-button');     // Add style here
-    task_element.appendChild(edit_button);
+    task_buttons.appendChild(edit_button);
 
     // Adds Delete button
     const delete_button = document.createElement('button');
     delete_button.textContent = 'Delete';
     delete_button.classList.add('delete-button'); // Add style here
-    task_element.appendChild(delete_button);
+    task_buttons.appendChild(delete_button);
 
     // Add event listener to delete button
     delete_button.addEventListener('click', () => {
@@ -106,17 +111,26 @@ function load_tasks() {
         task_text_element.textContent = task_text; // Add task text
         task_element.appendChild(task_text_element);
 
+        // Create a container for the buttons
+        const task_buttons = document.createElement('div');
+        task_buttons.classList.add('task-buttons');
+        task_element.appendChild(task_buttons);
+
+        // Add the buttons div to the task
+        task_element.appendChild(task_buttons);
+
         // Adds Edit button
         const edit_button = document.createElement('button');
         edit_button.textContent = 'Edit';
         edit_button.classList.add('edit-button');
-        task_element.appendChild(edit_button);
-
+       
         // Adds Delete button
         const delete_button = document.createElement('button');
         delete_button.textContent = 'Delete';
         delete_button.classList.add('delete-button');
-        task_element.appendChild(delete_button);
+        task_buttons.appendChild(edit_button);
+        task_buttons.appendChild(delete_button);
+
 
         // Adds event listener to delete button
         delete_button.addEventListener('click', () => {
