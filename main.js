@@ -36,6 +36,7 @@ function timeUpdate() {
 function add_task() {
     /*  Adds a new task to the task column based on user input
     */
+
     const task_text = task_input.value.trim(); // Get the input value and remove whitespace
 
     if (task_text === '') {
@@ -43,40 +44,139 @@ function add_task() {
         return;
     }
 
-    // Create a new task
+    // Create the task element
     const task_element = document.createElement('div');
-    task_element.classList.add('task');     // Add styling to task element
-    task_element.textContent = task_text;
+    task_element.classList.add('task');           // Add style here
 
-    // Append the note to the container
-    task_container.appendChild(task_element);
+    const task_text_element = document.createElement('span');
+    task_text_element.textContent = task_text;    // Add the task text here
+    task_element.appendChild(task_text_element);
 
-    let tasks = JSON.parse(localStorage.getItem('tasks'));  // Retrieve task array from local storage
-    if (tasks === null) {
+    // Create a container for the buttons
+    const task_buttons = document.createElement('div');
+    task_buttons.classList.add('task-buttons');
+    task_element.appendChild(task_buttons);
+
+    // Adds Edit button
+    const edit_button = document.createElement('button');
+    edit_button.textContent = 'Edit';
+    edit_button.classList.add('edit-button');     // Add style here
+    task_buttons.appendChild(edit_button);
+
+    // Adds Delete button
+    const delete_button = document.createElement('button');
+    delete_button.textContent = 'Delete';
+    delete_button.classList.add('delete-button'); // Add style here
+    task_buttons.appendChild(delete_button);
+
+    // Add event listener to delete button
+    delete_button.addEventListener('click', () => {
+        task_element.remove();
+        delete_task(task_text);      // Deletes the task div from the column when delete is clicked
+    });
+
+    // Add event listener to edit button and opens pop-up prompt
+    edit_button.addEventListener('click', () => {
+        const new_text = prompt('Modify task text:', task_text_element.textContent);
+        if (new_text) {
+            update_task(task_text_element.textContent, new_text); // Updates the task div with new text
+            task_text_element.textContent = new_text;
+        }
+    });
+
+    task_container.appendChild(task_element);     // Adds task to the column
+
+    // Store task in localStorage
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    if (tasks === null) {   // if no tasks found, empty list
         tasks = []; 
     }
 
-    tasks.push(task_text);  // Add current task to task array
-    localStorage.setItem('tasks', JSON.stringify(tasks));   // Store task array back in local storage
+    tasks.push(task_text);  
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    // Clear the input field
-    task_input.value = '';
+    task_input.value = '';   // Make the input blank
 }
 
 function load_tasks() {
-    let tasks = JSON.parse(localStorage.getItem('tasks'));
-    if (tasks === null) {
-        tasks = []; 
-    }
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
     tasks.forEach(task_text => {
+        // Creates task div
         const task_element = document.createElement('div');
         task_element.classList.add('task');
-        task_element.textContent = task_text;
+
+        // Adds task text to div
+        const task_text_element = document.createElement('span');
+        task_text_element.textContent = task_text; // Add task text
+        task_element.appendChild(task_text_element);
+
+        // Create a container for the buttons
+        const task_buttons = document.createElement('div');
+        task_buttons.classList.add('task-buttons');
+        task_element.appendChild(task_buttons);
+
+        // Add the buttons div to the task
+        task_element.appendChild(task_buttons);
+
+        // Adds Edit button
+        const edit_button = document.createElement('button');
+        edit_button.textContent = 'Edit';
+        edit_button.classList.add('edit-button');
+       
+        // Adds Delete button
+        const delete_button = document.createElement('button');
+        delete_button.textContent = 'Delete';
+        delete_button.classList.add('delete-button');
+        task_buttons.appendChild(edit_button);
+        task_buttons.appendChild(delete_button);
+
+
+        // Adds event listener to delete button
+        delete_button.addEventListener('click', () => {
+            task_element.remove();
+            delete_task(task_text);
+        });
+
+        // Adds event listener to edit button
+        edit_button.addEventListener('click', () => {
+            const new_text = prompt('Edit your task:', task_text_element.textContent);
+            if (new_text) {
+                update_task(task_text_element.textContent, new_text);
+                task_text_element.textContent = new_text;
+            }
+        });
+
+        // Adds task to column
         task_container.appendChild(task_element);
     });
 }
 
 
+function delete_task(task_text) {
+    /*  Deletes a task from storage when the Delete button is clicked
+    */
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    if (tasks === null) {   // if no tasks found, empty list
+        tasks = []; 
+    }
+    tasks = tasks.filter(task => task !== task_text);           // Remove task from task array
+    localStorage.setItem('tasks', JSON.stringify(tasks));       // Convert task array into string and save it to storage
+}
+
+function update_task(old_text, new_text) {
+    /*  Edits a task in storage when the Edit button is clicked
+    */
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    if (tasks === null) {                                       // if no tasks found, empty list
+        tasks = []; 
+    }
+    const task_index = tasks.indexOf(old_text);
+    if (task_index > -1) {
+        tasks[task_index] = new_text;                           // Update the task
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
 
 
