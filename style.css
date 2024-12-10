@@ -17,7 +17,7 @@ html, body {
 }
   
 .task-column, .notes-column {
-    height: 500px;
+    min-height: 500px;
     padding: 10px;
     flex: 1;
     background-color: #2b2b2b;
@@ -27,6 +27,10 @@ html, body {
 }
 
 .task-column {
+    height: auto;
+}
+
+.notes-column {
     height: auto;
 }
 
