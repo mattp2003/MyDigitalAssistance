@@ -37,9 +37,5 @@
 - We could train it to focus on healthy lifestyle behaviors.
 - The goal is to personalize with the user's habits and living styles.
 
-### Potential Template References:
-- Menu: [Notion Template](https://www.notion.so/)
-- Tasks: [Trello Template](https://trello.com/) / [Todoist Template](https://todoist.com/)
-
 ### Target Group:
 - Our app is a digital organization tool, with the intended users of our proposed solution are students who want to keep their tasks organized and need to keep notes on things they need to get done. One context would be a student who needs to complete 3 homework assignments by the end of the week. The student can keep track of each assignment by creating 3 seperate tasks for them and categorizing them in the "This Week" column. The student may also need to remember to search certain concepts for some of the homework assignments, so they would create multiple notes that list certain concepts to search up later or links they found throughout the week that will help them when they work on the assignments. This allows for optimal workflow and organization for the student, ensuring that all the work is completed on time and their resources are contained within the app.
