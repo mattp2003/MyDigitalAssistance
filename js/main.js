@@ -2,6 +2,55 @@ const task_input = document.getElementById('task-input');           // Input for
 const add_task_button = document.getElementById('add-task-button'); // Button to add task
 const task_container = document.getElementById('task-container');   // Container which stores tasks
 
+// Function to fetch weather data using user's coordinates
+async function fetchWeatherByLocation(lat, lon) {
+    const apiKey = 'ccb71df7f7567c691a66b76aed6cbf72'; // Secret
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+        }
+        const data = await response.json();
+        displayWeather(data);
+    } catch (error) {
+        console.error('Failed to fetch weather data:', error);
+        const weatherElement = document.querySelector('.weather');
+        weatherElement.textContent = 'Unable to load weather data.';
+    }
+}
+
+// Function to display weather data
+function displayWeather(data) {
+    const weatherElement = document.querySelector('.weather');
+    const temp = data.main.temp;
+    const description = data.weather[0].description;
+    const city = data.name;
+
+    weatherElement.innerHTML = `
+        <p>${city}: ${temp}°C, ${description}</p>
+    `;
+}
+
+// Function to get the user's location
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                fetchWeatherByLocation(latitude, longitude);
+            },
+            (error) => {
+                console.error('Geolocation error:', error.message);
+                const weatherElement = document.querySelector('.weather');
+                weatherElement.textContent = 'Unable to access location.';
+            }
+        );
+    } else {
+        alert('Geolocation is not supported by this browser.');
+    }
+}
 
 function timeUpdate() {
     /*  Updates the time on the index.html page every minute
@@ -30,8 +79,9 @@ function timeUpdate() {
   
     // Update value on HTML and format it so the date appears above the time
     time_obj.innerHTML = `${date}<br>${format}`;
-  }
 
+    getUserLocation();
+}
 
 function add_task() {
     /*  Adds a new task to the task column based on user input
