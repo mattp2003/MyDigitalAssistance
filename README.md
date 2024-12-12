@@ -31,9 +31,11 @@
 
 ### External API Feature (weather)
 - We will use OpenWeatherMap API to access daily weather information.
-- Upon external data retrieval, we automatically add weather reminders to the user's daily tasks (e.g. remember to bring your umbrella, wear your jacket, put on your sunglasses, ...).
-- We will also determine a threshold level to warn the user if the weather condition would affect their daily activity (proximity).
-- Connecting this feature to our calendar feature, the user would only be able to access the weather information once he/she clicks on a specific date. This would reduce the amount of data traffic that we have to constantly process.
+
+- ### Additional API Feature (openai)
+- Integrate an AI chat box in case the user does want its recommendation on their daily tasks.
+- We could train it to focus on healthy lifestyle behaviors.
+- The goal is to personalize with the user's habits and living styles.
 
 ### Potential Template References:
 - Menu: [Notion Template](https://www.notion.so/)
