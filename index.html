@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     
     <p class="time"></p>
+    <p class="weather"></p>
 
     <div class="columns-container">
         <div class="task-column"> 
@@ -21,11 +22,29 @@
             
         </div>
         <div class="notes-column">
-            <h1 class="column-title">Notes</h1>
+            <h1 class="column-title">
+                <span>Notes</span>
+                <button class="add-button" onclick="addStickyNote()">
+                    <span class="add-icon">+</span>
+                </button>
+            </h1>
+            <div id="notes-container"></div>
         </div>
 
     </div>
-
-    <script src="main.js"></script>
+    <script>
+        window.embeddedChatbotConfig = {
+        chatbotId: "4hDbLONvKvqKsf1S_P-Qn",
+        domain: "www.chatbase.co"
+        }
+        </script>
+        <script
+        src="https://www.chatbase.co/embed.min.js"
+        chatbotId="4hDbLONvKvqKsf1S_P-Qn"
+        domain="www.chatbase.co"
+        defer>
+        </script>
+    <script src="js/main.js"></script>
+    <script src="js/notes.js"></script>
 </body>
 </html>
